@@ -1,6 +1,6 @@
 {
   "name": "fast-simplex-noise",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A JavaScript implementation of faster simplex noise",
   "keywords": [
     "noise",
@@ -8,12 +8,12 @@
     "random",
     "simplex"
   ],
-  "homepage": "https://github.com/joshforisha/fast-simplex-noise",
-  "bugs": "https://github.com/joshforisha/fast-simplex-noise/issues",
+  "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
+  "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
   "repository": {
     "type": "git",
-    "url": "http://github.com/joshforisha/fast-simplex-noise.git"
+    "url": "http://github.com/joshforisha/fast-simplex-noise-js.git"
   },
   "engines": {
     "node": ">=0.10.0"
