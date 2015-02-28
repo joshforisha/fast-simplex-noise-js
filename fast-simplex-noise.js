@@ -125,7 +125,17 @@ FastSimplexNoise.prototype.get4DNoise = function (x, y, z, w) {
   return noise / maxAmplitude;
 };
 
-FastSimplexNoise.prototype.getRaw2DNoise = function (xin, yin) {
+FastSimplexNoise.prototype.getCylindricalNoise = function (c, x, y) {
+  var nx = x / c;
+  var r = c / (2 * Math.PI);
+  var rdx = nx * 2 * Math.PI;
+  var a = r * Math.sin(rdx);
+  var b = r * Math.cos(rdx);
+
+  return this.get3DNoise(a, b, y);
+};
+
+FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
   var G2    = FastSimplexNoise.G2;
   var dot2  = FastSimplexNoise.dot2D;
   var grad3 = FastSimplexNoise.GRADIENTS_3D;
@@ -133,14 +143,14 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (xin, yin) {
   var n0, n1, n2; // Noise contributions from the three corners
 
   // Skew the input space to determine which simplex cell we're in
-  var s = (xin + yin) * FastSimplexNoise.F2; // Hairy factor for 2D
-  var i = Math.floor(xin + s);
-  var j = Math.floor(yin + s);
+  var s = (x + y) * FastSimplexNoise.F2; // Hairy factor for 2D
+  var i = Math.floor(x + s);
+  var j = Math.floor(y + s);
   var t = (i + j) * G2;
   var X0 = i - t; // Unskew the cell origin back to (x,y) space
   var Y0 = j - t;
-  var x0 = xin - X0; // The x,y distances from the cell origin
-  var y0 = yin - Y0;
+  var x0 = x - X0; // The x,y distances from the cell origin
+  var y0 = y - Y0;
 
   // For the 2D case, the simplex shape is an equilateral triangle.
   // Determine which simplex we are in.
@@ -198,7 +208,7 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (xin, yin) {
   return 70.1 * (n0 + n1 + n2);
 }
 
-FastSimplexNoise.prototype.getRaw3DNoise = function (xin, yin, zin) {
+FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
   var dot3  = FastSimplexNoise.dot3D;
   var grad3 = FastSimplexNoise.GRADIENTS_3D;
   var G3    = FastSimplexNoise.G3;
@@ -206,17 +216,17 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (xin, yin, zin) {
   var n0, n1, n2, n3; // Noise contributions from the four corners
 
   // Skew the input space to determine which simplex cell we're in
-  var s = (xin + yin + zin) * FastSimplexNoise.F3; // Very nice and simple skew factor for 3D
-  var i = Math.floor(xin + s);
-  var j = Math.floor(yin + s);
-  var k = Math.floor(zin + s);
+  var s = (x + y + z) * FastSimplexNoise.F3; // Very nice and simple skew factor for 3D
+  var i = Math.floor(x + s);
+  var j = Math.floor(y + s);
+  var k = Math.floor(z + s);
   var t = (i + j + k) * G3;
   var X0 = i - t; // Unskew the cell origin back to (x,y,z) space
   var Y0 = j - t;
   var Z0 = k - t;
-  var x0 = xin - X0; // The x,y,z distances from the cell origin
-  var y0 = yin - Y0;
-  var z0 = zin - Z0;
+  var x0 = x - X0; // The x,y,z distances from the cell origin
+  var y0 = y - Y0;
+  var z0 = z - Z0;
 
   // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
   // Determine which simplex we are in.

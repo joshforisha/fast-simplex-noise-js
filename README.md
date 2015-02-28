@@ -26,24 +26,23 @@ Options can include:
 - **persistence** (*float*) The persistence of amplitude per octave (default: 0.5)
 - **random** (*function*) A function that generates random values between 0 and 1 (default: Math.random)
 
-### fastSimplexNoise.get2DNoise(x : Integer, y : Integer) : Float
-Get a noise value [-1, 1] at the 2D coordinate (x,y) in layered octaves, using amplitude, frequency, and persistence values.
+### fastSimplexNoise.get2DNoise(x : Float, y : Float) : Float
+Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*) in layered octaves, using amplitude, frequency, and persistence values.
 
-### fastSimplexNoise.get3DNoise(x : Integer, y : Integer, z : Integer) : Float
-Get a noise value [-1, 1] at the 3D coordinate (x,y,z) in layered octaves, using amplitude, frequency, and persistence values.
+### fastSimplexNoise.get3DNoise(x : Float, y : Float, z : Float) : Float
+Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*) in layered octaves, using amplitude, frequency, and persistence values.
 
-### fastSimplexNoise.get4DNoise(x : Integer, y : Integer, z : Integer, w : Integer) : Float
-Get a noise value [-1, 1] at the 4D coordinate (x,y,z,w) in layered octaves, using amplitude, frequency, and persistence values.
+### fastSimplexNoise.get4DNoise(x : Float, y : Float, z : Float, w : Float) : Float
+Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*) in layered octaves, using amplitude, frequency, and persistence values.
 
-### fastSimplexNoise.getRaw2DNoise(x : Integer, y : Integer) : Float
-Get a noise value [-1, 1] at the 2D coordinate (x,y).
+### fastSimplexNoise.getCylindricalNoise(c : Float, x : Float, y : Float) : Float
+Get a noise value for a point (*x*,*y*) on the surface of a 3D cylinder with circumference *c*.
 
-### fastSimplexNoise.getRaw3DNoise(x : Integer, y : Integer, z : Integer) : Float
-Get a noise value [-1, 1] at the 3D coordinate (x,y,z).
+### fastSimplexNoise.getRaw2DNoise(x : Float, y : Float) : Float
+Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*).
 
-### fastSimplexNoise.getRaw4DNoise(x : Integer, y : Integer, z : Integer, w : Integer) : Float
-Get a noise value [-1, 1] at the 4D coordinate (x,y,z,w).
+### fastSimplexNoise.getRaw3DNoise(x : Float, y : Float, z : Float) : Float
+Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*).
 
-## TODO
-- Implement getCylindricalNoise() to handle horizontally-wrapped 2D slice of 3D noise
-- Implement getSphericalNoise() to handle 2D slice of 3D noise in sphere shape
+### fastSimplexNoise.getRaw4DNoise(x : Float, y : Float, z : Float, w : Float) : Float
+Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*).
