@@ -1,0 +1,21 @@
+{
+  "name": "fast-simplex-noise",
+  "version": "0.1.3",
+  "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
+  "authors": [
+    "Josh Forisha <josh@forisha.com>"
+  ],
+  "description": "A JavaScript implementation of faster simplex noise",
+  "main": "fast-simplex-noise.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "noise",
+    "perlin",
+    "random",
+    "simplex"
+  ]
+}
