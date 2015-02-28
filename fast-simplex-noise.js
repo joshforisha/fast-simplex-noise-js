@@ -135,6 +135,16 @@ FastSimplexNoise.prototype.getCylindricalNoise = function (c, x, y) {
   return this.get3DNoise(a, b, y);
 };
 
+FastSimplexNoise.prototype.getCylindricalTimeNoise = function (c, x, y, t) {
+  var nx = x / c;
+  var r = c / (2 * Math.PI);
+  var rdx = nx * 2 * Math.PI;
+  var a = r * Math.sin(rdx);
+  var b = r * Math.cos(rdx);
+
+  return this.get4DNoise(a, b, y, t);
+};
+
 FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
   var G2    = FastSimplexNoise.G2;
   var dot2  = FastSimplexNoise.dot2D;
@@ -462,7 +472,35 @@ FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
 
   // Sum up and scale the result to cover the range [-1,1]
   return 72.3 * (n0 + n1 + n2 + n3 + n4);
-}
+};
+
+FastSimplexNoise.prototype.getSphericalNoise = function (c, x, y) {
+  var nx = x / c;
+  var ny = y / c;
+  var rdx = nx * 2 * Math.PI;
+  var rdy = ny * Math.PI;
+  var sinY = Math.sin(rdy + Math.PI);
+  var sinRds = 2 * Math.PI;
+  var a = sinRds * Math.sin(rdx) * sinY;
+  var b = sinRds * Math.cos(rdx) * sinY;
+  var d = sinRds * Math.cos(rdy);
+
+  return this.get3DNoise(a, b, d);
+};
+
+FastSimplexNoise.prototype.getSphericalTimeNoise = function (c, x, y, t) {
+  var nx = x / c;
+  var ny = y / c;
+  var rdx = nx * 2 * Math.PI;
+  var rdy = ny * Math.PI;
+  var sinY = Math.sin(rdy + Math.PI);
+  var sinRds = 2 * Math.PI;
+  var a = sinRds * Math.sin(rdx) * sinY;
+  var b = sinRds * Math.cos(rdx) * sinY;
+  var d = sinRds * Math.cos(rdy);
+
+  return this.get4DNoise(a, b, d, t);
+};
 
 // AMD module
 if (typeof define !== 'undefined' && define.amd) {
