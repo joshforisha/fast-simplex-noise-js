@@ -40,30 +40,26 @@ function FastSimplexNoise(options) {
   }
 }
 
-// Skewing and unskewing factors for 2, 3, and 4 dimensions
-FastSimplexNoise.F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-FastSimplexNoise.G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-FastSimplexNoise.F3 = 1.0 / 3.0;
-FastSimplexNoise.G3 = 1.0 / 6.0;
-FastSimplexNoise.F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
-FastSimplexNoise.G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
-
 FastSimplexNoise.GRADIENTS_3D = [
-  [1,1,0], [-1, 1, 0], [1,-1, 0], [-1,-1, 0],
-  [1,0,1], [-1, 0, 1], [1, 0,-1], [-1, 0,-1],
-  [0,1,1], [ 0,-1,-1], [0, 1,-1], [ 0,-1,-1]
+  [ 1, 1, 0], [-1, 1, 0], [ 1,-1, 0], [-1,-1, 0],
+  [ 1, 0, 1], [-1, 0, 1], [ 1, 0,-1], [-1, 0,-1],
+  [ 0, 1, 1], [ 0,-1,-1], [ 0, 1,-1], [ 0,-1,-1]
 ];
 
 FastSimplexNoise.GRADIENTS_4D = [
-  [0,1,1,1],  [0,1,1,-1],  [0,1,-1,1],  [0,1,-1,-1],
-  [0,-1,1,1], [0,-1,1,-1], [0,-1,-1,1], [0,-1,-1,-1],
-  [1,0,1,1],  [1,0,1,-1],  [1,0,-1,1],  [1,0,-1,-1],
-  [-1,0,1,1], [-1,0,1,-1], [-1,0,-1,1], [-1,0,-1,-1],
-  [1,1,0,1],  [1,1,0,-1],  [1,-1,0,1],  [1,-1,0,-1],
-  [-1,1,0,1], [-1,1,0,-1], [-1,-1,0,1], [-1,-1,0,-1],
-  [1,1,1,0],  [1,1,-1,0],  [1,-1,1,0],  [1,-1,-1,0],
-  [-1,1,1,0], [-1,1,-1,0], [-1,-1,1,0], [-1,-1,-1,0]
+  [ 0, 1, 1, 1], [ 0, 1, 1,-1], [ 0, 1,-1, 1], [ 0, 1,-1,-1],
+  [ 0,-1, 1, 1], [ 0,-1, 1,-1], [ 0,-1,-1, 1], [ 0,-1,-1,-1],
+  [ 1, 0, 1, 1], [ 1, 0, 1,-1], [ 1, 0,-1, 1], [ 1, 0,-1,-1],
+  [-1, 0, 1, 1], [-1, 0, 1,-1], [-1, 0,-1, 1], [-1, 0,-1,-1],
+  [ 1, 1, 0, 1], [ 1, 1, 0,-1], [ 1,-1, 0, 1], [ 1,-1, 0,-1],
+  [-1, 1, 0, 1], [-1, 1, 0,-1], [-1,-1, 0, 1], [-1,-1, 0,-1],
+  [ 1, 1, 1, 0], [ 1, 1,-1, 0], [ 1,-1, 1, 0], [ 1,-1,-1, 0],
+  [-1, 1, 1, 0], [-1, 1,-1, 0], [-1,-1, 1, 0], [-1,-1,-1, 0]
 ];
+
+FastSimplexNoise.G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+FastSimplexNoise.G3 = 1.0 / 6.0;
+FastSimplexNoise.G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
 
 FastSimplexNoise.dot2D = function (g, x, y) {
   return g[0] * x + g[1] * y;
@@ -82,11 +78,12 @@ FastSimplexNoise.prototype.get2DNoise = function (x, y) {
   var frequency = this.frequency;
   var maxAmplitude = 0;
   var noise = 0;
+  var persistence = this.persistence;
 
   for (var i = 0; i < this.octaves; i++) {
     noise += this.getRaw2DNoise(x * frequency, y * frequency) * amplitude;
     maxAmplitude += amplitude;
-    amplitude *= this.persistence;
+    amplitude *= persistence;
     frequency *= 2;
   }
 
@@ -98,11 +95,12 @@ FastSimplexNoise.prototype.get3DNoise = function (x, y, z) {
   var frequency = this.frequency;
   var maxAmplitude = 0;
   var noise = 0;
+  var persistence = this.persistence;
 
   for (var i = 0; i < this.octaves; i++) {
     noise += this.getRaw3DNoise(x * frequency, y * frequency, z * frequency) * amplitude;
     maxAmplitude += amplitude;
-    amplitude *= this.persistence;
+    amplitude *= persistence;
     frequency *= 2;
   }
 
@@ -114,11 +112,12 @@ FastSimplexNoise.prototype.get4DNoise = function (x, y, z, w) {
   var frequency = this.frequency;
   var maxAmplitude = 0;
   var noise = 0;
+  var persistence = this.persistence;
 
   for (var i = 0; i < this.octaves; i++) {
     noise += this.getRaw4DNoise(x * frequency, y * frequency, z * frequency, w * frequency) * amplitude;
     maxAmplitude += amplitude;
-    amplitude *= this.persistence;
+    amplitude *= persistence;
     frequency *= 2;
   }
 
@@ -146,14 +145,16 @@ FastSimplexNoise.prototype.getCylindricalTimeNoise = function (c, x, y, t) {
 };
 
 FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
-  var G2    = FastSimplexNoise.G2;
-  var dot2  = FastSimplexNoise.dot2D;
-  var grad3 = FastSimplexNoise.GRADIENTS_3D;
+  var G2        = FastSimplexNoise.G2;
+  var dot2      = FastSimplexNoise.dot2D;
+  var grad3     = FastSimplexNoise.GRADIENTS_3D;
+  var perm      = this.perm;
+  var permMod12 = this.permMod12;
 
   var n0, n1, n2; // Noise contributions from the three corners
 
   // Skew the input space to determine which simplex cell we're in
-  var s = (x + y) * FastSimplexNoise.F2; // Hairy factor for 2D
+  var s = (x + y) * 0.5 * (Math.sqrt(3.0) - 1.0); // Hairy factor for 2D
   var i = Math.floor(x + s);
   var j = Math.floor(y + s);
   var t = (i + j) * G2;
@@ -185,9 +186,9 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
   // Work out the hashed gradient indices of the three simplex corners
   var ii = i & 255;
   var jj = j & 255;
-  var gi0 = this.permMod12[ii + this.perm[jj]];
-  var gi1 = this.permMod12[ii + i1 + this.perm[jj + j1]];
-  var gi2 = this.permMod12[ii + 1 + this.perm[jj + 1]];
+  var gi0 = permMod12[ii + perm[jj]];
+  var gi1 = permMod12[ii + i1 + perm[jj + j1]];
+  var gi2 = permMod12[ii + 1 + perm[jj + 1]];
 
   // Calculate the contribution from the three corners
   var t0 = 0.5 - x0 * x0 - y0 * y0;
@@ -219,14 +220,16 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
 }
 
 FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
-  var dot3  = FastSimplexNoise.dot3D;
-  var grad3 = FastSimplexNoise.GRADIENTS_3D;
-  var G3    = FastSimplexNoise.G3;
+  var dot3      = FastSimplexNoise.dot3D;
+  var grad3     = FastSimplexNoise.GRADIENTS_3D;
+  var G3        = FastSimplexNoise.G3;
+  var perm      = this.perm;
+  var permMod12 = this.permMod12;
 
   var n0, n1, n2, n3; // Noise contributions from the four corners
 
   // Skew the input space to determine which simplex cell we're in
-  var s = (x + y + z) * FastSimplexNoise.F3; // Very nice and simple skew factor for 3D
+  var s = (x + y + z) / 3.0; // Very nice and simple skew factor for 3D
   var i = Math.floor(x + s);
   var j = Math.floor(y + s);
   var k = Math.floor(z + s);
@@ -278,10 +281,10 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
   var ii = i & 255;
   var jj = j & 255;
   var kk = k & 255;
-  var gi0 = this.permMod12[ii + this.perm[jj + this.perm[kk]]];
-  var gi1 = this.permMod12[ii + i1 + this.perm[jj + j1 + this.perm[kk + k1]]];
-  var gi2 = this.permMod12[ii + i2 + this.perm[jj + j2 + this.perm[kk + k2]]];
-  var gi3 = this.permMod12[ii + 1 + this.perm[jj + 1 + this.perm[kk + 1]]];
+  var gi0 = permMod12[ii + perm[jj + perm[kk]]];
+  var gi1 = permMod12[ii + i1 + perm[jj + j1 + perm[kk + k1]]];
+  var gi2 = permMod12[ii + i2 + perm[jj + j2 + perm[kk + k2]]];
+  var gi3 = permMod12[ii + 1 + perm[jj + 1 + perm[kk + 1]]];
 
   // Calculate the contribution from the four corners
   var t0 = 0.5 - x0 * x0 - y0 * y0 - z0 * z0;
@@ -319,14 +322,16 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
 }
 
 FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
-  var dot4  = FastSimplexNoise.dot4D;
-  var grad4 = FastSimplexNoise.GRADIENTS_4D;
-  var G4    = FastSimplexNoise.G4;
+  var dot4      = FastSimplexNoise.dot4D;
+  var grad4     = FastSimplexNoise.GRADIENTS_4D;
+  var G4        = FastSimplexNoise.G4;
+  var perm      = this.perm;
+  var permMod12 = this.permMod12;
 
   var n0, n1, n2, n3, n4; // Noise contributions from the five corners
 
   // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
-  var s = (x + y + z + w) * FastSimplexNoise.F4; // Factor for 4D skewing
+  var s = (x + y + z + w) * (Math.sqrt(5.0) - 1.0) / 4.0; // Factor for 4D skewing
   var i = Math.floor(x + s);
   var j = Math.floor(y + s);
   var k = Math.floor(z + s);
@@ -427,11 +432,11 @@ FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
   var jj = j & 255;
   var kk = k & 255;
   var ll = l & 255;
-  var gi0 = this.perm[ii + this.perm[jj + this.perm[kk + this.perm[ll]]]] % 32;
-  var gi1 = this.perm[ii + i1 + this.perm[jj + j1 + this.perm[kk + k1 + this.perm[ll + l1]]]] % 32;
-  var gi2 = this.perm[ii + i2 + this.perm[jj + j2 + this.perm[kk + k2 + this.perm[ll + l2]]]] % 32;
-  var gi3 = this.perm[ii + i3 + this.perm[jj + j3 + this.perm[kk + k3 + this.perm[ll + l3]]]] % 32;
-  var gi4 = this.perm[ii + 1 + this.perm[jj + 1 + this.perm[kk + 1 + this.perm[ll + 1]]]] % 32;
+  var gi0 = perm[ii + perm[jj + perm[kk + perm[ll]]]] % 32;
+  var gi1 = perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32;
+  var gi2 = perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32;
+  var gi3 = perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32;
+  var gi4 = perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32;
 
   // Calculate the contribution from the five corners
   var t0 = 0.5 - x0 * x0 - y0 * y0 - z0 * z0 - w0 * w0;
@@ -512,7 +517,7 @@ if (typeof exports !== 'undefined') {
   exports.FastSimplexNoise = FastSimplexNoise;
 }
 
-// NodeJS / io.js
+// NPM
 if (typeof module !== 'undefined') {
   module.exports = FastSimplexNoise;
 }
