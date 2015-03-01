@@ -40,6 +40,10 @@ function FastSimplexNoise(options) {
   }
 }
 
+FastSimplexNoise.G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+FastSimplexNoise.G3 = 1.0 / 6.0;
+FastSimplexNoise.G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
+
 FastSimplexNoise.GRADIENTS_3D = [
   [ 1, 1, 0], [-1, 1, 0], [ 1,-1, 0], [-1,-1, 0],
   [ 1, 0, 1], [-1, 0, 1], [ 1, 0,-1], [-1, 0,-1],
@@ -56,10 +60,6 @@ FastSimplexNoise.GRADIENTS_4D = [
   [ 1, 1, 1, 0], [ 1, 1,-1, 0], [ 1,-1, 1, 0], [ 1,-1,-1, 0],
   [-1, 1, 1, 0], [-1, 1,-1, 0], [-1,-1, 1, 0], [-1,-1,-1, 0]
 ];
-
-FastSimplexNoise.G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-FastSimplexNoise.G3 = 1.0 / 6.0;
-FastSimplexNoise.G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
 
 FastSimplexNoise.dot2D = function (g, x, y) {
   return g[0] * x + g[1] * y;
@@ -217,7 +217,7 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to return values in the interval [-1, 1];
   return 70.1 * (n0 + n1 + n2);
-}
+};
 
 FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
   var dot3      = FastSimplexNoise.dot3D;
@@ -319,7 +319,7 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to stay just inside [-1,1]
   return 94.6 * (n0 + n1 + n2 + n3);
-}
+};
 
 FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
   var dot4      = FastSimplexNoise.dot4D;
