@@ -17,8 +17,10 @@ Convenience functions have been added as well, in order to avoid needing to scal
 
 ## API
 
-### Constructor: FastSimplexNoise(options : Object)
-Options can contain:
+### Constructor
+
+#### FastSimplexNoise([options])
+Options is an optional object that can contain:
 
 - **amplitude** (*float*) The base amplitude (default: 1.0)
 - **frequency** (*float*) The base frequency (default: 1.0)
@@ -26,32 +28,34 @@ Options can contain:
 - **persistence** (*float*) The persistence of amplitude per octave (default: 0.5)
 - **random** (*function*) A function that generates random values between 0 and 1 (default: Math.random)
 
-### get2DNoise(x : Float, y : Float) : Float
-Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*) in layered octaves, using amplitude, frequency, and persistence values.
+### Instance Methods
 
-### get3DNoise(x : Float, y : Float, z : Float) : Float
-Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*) in layered octaves, using amplitude, frequency, and persistence values.
+#### .get2DNoise(x, y)
+Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*) in summed octaves, using amplitude, frequency, and persistence values.
 
-### get4DNoise(x : Float, y : Float, z : Float, w : Float) : Float
-Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*) in layered octaves, using amplitude, frequency, and persistence values.
+#### .get3DNoise(x, y, z)
+Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*) in summed octaves, using amplitude, frequency, and persistence values.
 
-### getCylindricalNoise(c : Float, x : Float, y : Float) : Float
+#### .get4DNoise(x, y, z, w)
+Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*) in summed octaves, using amplitude, frequency, and persistence values.
+
+#### .getCylindricalNoise(c, x, y)
 Get a noise value [-1, 1] for a point (*x*,*y*) on the surface of a cylinder with circumference *c*.
 
-### getCylindricalTimeNoise(c : Float, x : Float, y : Float, t : Float) : Float
+#### .getCylindricalTimeNoise(c, x, y, t)
 Get a noise value [-1, 1] for a point (*x*, *y*, *t*) on the surface of a cylinder with circumference *c*.
 
-### getRaw2DNoise(x : Float, y : Float) : Float
+#### .getRaw2DNoise(x, y)
 Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*).
 
-### getRaw3DNoise(x : Float, y : Float, z : Float) : Float
+#### .getRaw3DNoise(x, y, z)
 Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*).
 
-### getRaw4DNoise(x : Float, y : Float, z : Float, w : Float) : Float
+#### .getRaw4DNoise(x, y, z, w)
 Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*).
 
-### getSphericalNoise(c : Float, x : Float, y : Float) : Float
+#### .getSphericalNoise(c, x, y)
 Get a noise value [-1, 1] for a point (*x*, *y*) on the surface of a sphere with circumference *c*.
 
-### getSphericalTimeNoise(c : Float, x : Float, y : Float, t : Float) : Float
+#### .getSphericalTimeNoise(c, x, y, t)
 Get a noise value [-1, 1] for a point (*x*, *y*, *t*) on the surface of a sphere with circumference *c*.
