@@ -19,12 +19,14 @@ function FastSimplexNoise(options) {
   this.persistence = options.persistence || 0.5;
   this.random      = options.random || Math.random;
 
+  var i;
   var p = new Uint8Array(256);
-  for (var i = 0; i < 256; i++) {
+  for (i = 0; i < 256; i++) {
     p[i] = i;
   }
+
   var n, q;
-  for (var i = 255; i > 0; i--) {
+  for (i = 255; i > 0; i--) {
     n = Math.floor((i + 1) * this.random());
     q = p[i];
     p[i] = p[n];
@@ -34,7 +36,7 @@ function FastSimplexNoise(options) {
   // To remove the need for index wrapping, double the permutation table length
   this.perm = new Uint8Array(512);
   this.permMod12 = new Uint8Array(512);
-  for (var i = 0; i < 512; i++) {
+  for (i = 0; i < 512; i++) {
     this.perm[i] = p[i & 255];
     this.permMod12[i] = this.perm[i] % 12;
   }
@@ -124,7 +126,7 @@ FastSimplexNoise.prototype.get4DNoise = function (x, y, z, w) {
   return noise / maxAmplitude;
 };
 
-FastSimplexNoise.prototype.getCylindricalNoise = function (c, x, y) {
+FastSimplexNoise.prototype.getCylindrical2DNoise = function (c, x, y) {
   var nx = x / c;
   var r = c / (2 * Math.PI);
   var rdx = nx * 2 * Math.PI;
@@ -134,14 +136,14 @@ FastSimplexNoise.prototype.getCylindricalNoise = function (c, x, y) {
   return this.get3DNoise(a, b, y);
 };
 
-FastSimplexNoise.prototype.getCylindricalTimeNoise = function (c, x, y, t) {
+FastSimplexNoise.prototype.getCylindrical3DNoise = function (c, x, y, z) {
   var nx = x / c;
   var r = c / (2 * Math.PI);
   var rdx = nx * 2 * Math.PI;
   var a = r * Math.sin(rdx);
   var b = r * Math.cos(rdx);
 
-  return this.get4DNoise(a, b, y, t);
+  return this.get4DNoise(a, b, y, z);
 };
 
 FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
@@ -479,7 +481,7 @@ FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
   return 72.3 * (n0 + n1 + n2 + n3 + n4);
 };
 
-FastSimplexNoise.prototype.getSphericalNoise = function (c, x, y) {
+FastSimplexNoise.prototype.getSpherical2DNoise = function (c, x, y) {
   var nx = x / c;
   var ny = y / c;
   var rdx = nx * 2 * Math.PI;
@@ -493,7 +495,7 @@ FastSimplexNoise.prototype.getSphericalNoise = function (c, x, y) {
   return this.get3DNoise(a, b, d);
 };
 
-FastSimplexNoise.prototype.getSphericalTimeNoise = function (c, x, y, t) {
+FastSimplexNoise.prototype.getSpherical3DNoise = function (c, x, y, z) {
   var nx = x / c;
   var ny = y / c;
   var rdx = nx * 2 * Math.PI;
@@ -504,7 +506,7 @@ FastSimplexNoise.prototype.getSphericalTimeNoise = function (c, x, y, t) {
   var b = sinRds * Math.cos(rdx) * sinY;
   var d = sinRds * Math.cos(rdy);
 
-  return this.get4DNoise(a, b, d, t);
+  return this.get4DNoise(a, b, d, z);
 };
 
 // AMD module

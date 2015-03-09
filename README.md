@@ -39,11 +39,11 @@ Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*) in summed octaves, 
 #### .get4DNoise(x, y, z, w)
 Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*) in summed octaves, using amplitude, frequency, and persistence values.
 
-#### .getCylindricalNoise(c, x, y)
+#### .getCylindrical2DNoise(c, x, y)
 Get a noise value [-1, 1] for a point (*x*,*y*) on the surface of a cylinder with circumference *c*.
 
-#### .getCylindricalTimeNoise(c, x, y, t)
-Get a noise value [-1, 1] for a point (*x*, *y*, *t*) on the surface of a cylinder with circumference *c*.
+#### .getCylindrical3DNoise(c, x, y, z)
+Get a noise value [-1, 1] for a point (*x*, *y*, *z*) on the surface of a cylinder with circumference *c*.
 
 #### .getRaw2DNoise(x, y)
 Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*).
@@ -54,8 +54,8 @@ Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*).
 #### .getRaw4DNoise(x, y, z, w)
 Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*).
 
-#### .getSphericalNoise(c, x, y)
+#### .getSpherical2DNoise(c, x, y)
 Get a noise value [-1, 1] for a point (*x*, *y*) on the surface of a sphere with circumference *c*.
 
-#### .getSphericalTimeNoise(c, x, y, t)
-Get a noise value [-1, 1] for a point (*x*, *y*, *t*) on the surface of a sphere with circumference *c*.
+#### .getSpherical3DNoise(c, x, y, z)
+Get a noise value [-1, 1] for a point (*x*, *y*, *z*) on the surface of a sphere with circumference *c*.
