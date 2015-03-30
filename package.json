@@ -15,6 +15,7 @@
     "type": "git",
     "url": "http://github.com/joshforisha/fast-simplex-noise-js.git"
   },
+  "main": "fast-simplex-noise.js",
   "engines": {
     "node": ">=0.10.0"
   }
