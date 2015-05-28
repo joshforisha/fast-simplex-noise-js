@@ -320,7 +320,7 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
 
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to stay just inside [-1,1]
-  return 94.6 * (n0 + n1 + n2 + n3);
+  return 76.8 * (n0 + n1 + n2 + n3);
 };
 
 FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
