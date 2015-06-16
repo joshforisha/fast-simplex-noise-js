@@ -19,6 +19,19 @@ function FastSimplexNoise(options) {
   this.persistence = options.persistence || 0.5;
   this.random = options.random || Math.random;
 
+  if (typeof options.min === 'number' && typeof options.max === 'number') {
+    if (options.min >= options.max) {
+      console.error('options.min must be less than options.max');
+    } else {
+      var min = parseFloat(options.min);
+      var max = parseFloat(options.max);
+      var range = max - min;
+      this.scale = function (value) {
+        return min + ((value + 1) / 2) * range;
+      };
+    }
+  }
+
   var i;
   var p = new Uint8Array(256);
   for (i = 0; i < 256; i++) {
@@ -89,7 +102,8 @@ FastSimplexNoise.prototype.get2DNoise = function (x, y) {
     frequency *= 2;
   }
 
-  return noise / maxAmplitude;
+  var value = noise / maxAmplitude;
+  return this.scale ? this.scale(value) : value;
 };
 
 FastSimplexNoise.prototype.get3DNoise = function (x, y, z) {
@@ -106,7 +120,8 @@ FastSimplexNoise.prototype.get3DNoise = function (x, y, z) {
     frequency *= 2;
   }
 
-  return noise / maxAmplitude;
+  var value = noise / maxAmplitude;
+  return this.scale ? this.scale(value) : value;
 };
 
 FastSimplexNoise.prototype.get4DNoise = function (x, y, z, w) {
@@ -123,7 +138,8 @@ FastSimplexNoise.prototype.get4DNoise = function (x, y, z, w) {
     frequency *= 2;
   }
 
-  return noise / maxAmplitude;
+  var value = noise / maxAmplitude;
+  return this.scale ? this.scale(value) : value;
 };
 
 FastSimplexNoise.prototype.getCylindrical2DNoise = function (c, x, y) {
