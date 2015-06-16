@@ -13,11 +13,11 @@
 function FastSimplexNoise(options) {
   if (!options) options = {};
 
-  this.amplitude   = options.amplitude || 1.0;
-  this.frequency   = options.frequency || 1.0;
-  this.octaves     = parseInt(options.octaves || 1);
+  this.amplitude = options.amplitude || 1.0;
+  this.frequency = options.frequency || 1.0;
+  this.octaves = parseInt(options.octaves || 1);
   this.persistence = options.persistence || 0.5;
-  this.random      = options.random || Math.random;
+  this.random = options.random || Math.random;
 
   var i;
   var p = new Uint8Array(256);
@@ -147,10 +147,10 @@ FastSimplexNoise.prototype.getCylindrical3DNoise = function (c, x, y, z) {
 };
 
 FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
-  var G2        = FastSimplexNoise.G2;
-  var dot2      = FastSimplexNoise.dot2D;
-  var grad3     = FastSimplexNoise.GRADIENTS_3D;
-  var perm      = this.perm;
+  var G2 = FastSimplexNoise.G2;
+  var dot2 = FastSimplexNoise.dot2D;
+  var grad3 = FastSimplexNoise.GRADIENTS_3D;
+  var perm = this.perm;
   var permMod12 = this.permMod12;
 
   var n0, n1, n2; // Noise contributions from the three corners
@@ -218,14 +218,14 @@ FastSimplexNoise.prototype.getRaw2DNoise = function (x, y) {
 
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to return values in the interval [-1, 1];
-  return 70.1 * (n0 + n1 + n2);
+  return 70.14805770653952 * (n0 + n1 + n2);
 };
 
 FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
-  var dot3      = FastSimplexNoise.dot3D;
-  var grad3     = FastSimplexNoise.GRADIENTS_3D;
-  var G3        = FastSimplexNoise.G3;
-  var perm      = this.perm;
+  var dot3 = FastSimplexNoise.dot3D;
+  var grad3 = FastSimplexNoise.GRADIENTS_3D;
+  var G3 = FastSimplexNoise.G3;
+  var perm = this.perm;
   var permMod12 = this.permMod12;
 
   var n0, n1, n2, n3; // Noise contributions from the four corners
@@ -320,14 +320,14 @@ FastSimplexNoise.prototype.getRaw3DNoise = function (x, y, z) {
 
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to stay just inside [-1,1]
-  return 76.8 * (n0 + n1 + n2 + n3);
+  return 94.68493150681971 * (n0 + n1 + n2 + n3);
 };
 
 FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
-  var dot4      = FastSimplexNoise.dot4D;
-  var grad4     = FastSimplexNoise.GRADIENTS_4D;
-  var G4        = FastSimplexNoise.G4;
-  var perm      = this.perm;
+  var dot4 = FastSimplexNoise.dot4D;
+  var grad4 = FastSimplexNoise.GRADIENTS_4D;
+  var G4 = FastSimplexNoise.G4;
+  var perm = this.perm;
   var permMod12 = this.permMod12;
 
   var n0, n1, n2, n3, n4; // Noise contributions from the five corners
@@ -478,7 +478,7 @@ FastSimplexNoise.prototype.getRaw4DNoise = function (x, y, z, w) {
   }
 
   // Sum up and scale the result to cover the range [-1,1]
-  return 72.3 * (n0 + n1 + n2 + n3 + n4);
+  return 72.37855765153664 * (n0 + n1 + n2 + n3 + n4);
 };
 
 FastSimplexNoise.prototype.getSpherical2DNoise = function (c, x, y) {
