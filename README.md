@@ -29,8 +29,8 @@ Options is an optional object that can contain:
 
 - **amplitude** (*float*) The base amplitude (default: 1.0)
 - **frequency** (*float*) The base frequency (default: 1.0)
-- **min** (*float*) The minimum scaled value to return (effective default: -1.0)
 - **max** (*float*) The maximum scaled value to return (effective default: 1.0)
+- **min** (*float*) The minimum scaled value to return (effective default: -1.0)
 - **octaves** (*integer*) The number of octaves to sum for noise generation (default: 1)
 - **persistence** (*float*) The persistence of amplitude per octave (default: 0.5)
 - **random** (*function*) A function that generates random values between 0 and 1 (default: Math.random)
