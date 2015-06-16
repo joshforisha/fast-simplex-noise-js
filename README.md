@@ -1,4 +1,4 @@
-# fast-simplex-noise-js [![NPM version](https://img.shields.io/npm/v/fast-simplex-noise?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
+# fast-simplex-noise-js [![NPM version](https://img.shields.io/npm/v/fast-simplex-noise.svg?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
 
 A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf).
 
