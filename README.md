@@ -38,19 +38,19 @@ Options is an optional object that can contain:
 ### Instance Methods
 
 #### .get2DNoise(x, y)
-Get a noise value between *min* and *max* at the 2D coordinate (*x*,*y*) in summed octaves, using amplitude, frequency, and persistence values.
+Get a noise value between **min** and **max** at the 2D coordinate (*x*,*y*) in summed octaves, using amplitude, frequency, and persistence values.
 
 #### .get3DNoise(x, y, z)
-Get a noise value between *min* and *max* at the 3D coordinate (*x*,*y*,*z*) in summed octaves, using amplitude, frequency, and persistence values.
+Get a noise value between **min** and **max** at the 3D coordinate (*x*,*y*,*z*) in summed octaves, using amplitude, frequency, and persistence values.
 
 #### .get4DNoise(x, y, z, w)
-Get a noise value between *min* and *max* at the 4D coordinate (*x*,*y*,*z*,*w*) in summed octaves, using amplitude, frequency, and persistence values.
+Get a noise value between **min** and **max** at the 4D coordinate (*x*,*y*,*z*,*w*) in summed octaves, using amplitude, frequency, and persistence values.
 
 #### .getCylindrical2DNoise(c, x, y)
-Get a noise value between *min* and *max* for a point (*x*,*y*) on the surface of a cylinder with circumference *c*.
+Get a noise value between **min** and **max** for a point (*x*,*y*) on the surface of a cylinder with circumference *c*.
 
 #### .getCylindrical3DNoise(c, x, y, z)
-Get a noise value between *min* and *max* for a point (*x*, *y*, *z*) on the surface of a cylinder with circumference *c*.
+Get a noise value between **min** and **max** for a point (*x*, *y*, *z*) on the surface of a cylinder with circumference *c*.
 
 #### .getRaw2DNoise(x, y)
 Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*).
@@ -62,7 +62,7 @@ Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*).
 Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*).
 
 #### .getSpherical2DNoise(c, x, y)
-Get a noise value between *min* and *max* for a point (*x*, *y*) on the surface of a sphere with circumference *c*.
+Get a noise value between **min** and **max** for a point (*x*, *y*) on the surface of a sphere with circumference *c*.
 
 #### .getSpherical3DNoise(c, x, y, z)
-Get a noise value between *min* and *max* for a point (*x*, *y*, *z*) on the surface of a sphere with circumference *c*.
+Get a noise value between **min** and **max** for a point (*x*, *y*, *z*) on the surface of a sphere with circumference *c*.
