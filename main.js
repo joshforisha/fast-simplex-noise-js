@@ -35,7 +35,7 @@ var GRAD4 = [
 
 // Exports ---------------------------------------------------------------------
 
-module.exports = FastSimplexNoise;
+if (typeof module !== 'undefined') module.exports = FastSimplexNoise;
 
 // Functions -------------------------------------------------------------------
 
@@ -227,7 +227,7 @@ FastSimplexNoise.prototype.raw2D = function (x, y) {
 
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to return values in the interval [-1, 1];
-  return 70.14805770653952 * (n0 + n1 + n2);
+  return 70.14805770654148 * (n0 + n1 + n2);
 };
 
 FastSimplexNoise.prototype.raw3D = function (x, y, z) {
@@ -326,7 +326,7 @@ FastSimplexNoise.prototype.raw3D = function (x, y, z) {
 
   // Add contributions from each corner to get the final noise value.
   // The result is scaled to stay just inside [-1,1]
-  return 94.68493150681971 * (n0 + n1 + n2 + n3);
+  return 94.68493150681972 * (n0 + n1 + n2 + n3);
 };
 
 FastSimplexNoise.prototype.raw4D = function (x, y, z, w) {
@@ -481,7 +481,7 @@ FastSimplexNoise.prototype.raw4D = function (x, y, z, w) {
   }
 
   // Sum up and scale the result to cover the range [-1,1]
-  return 72.37855765153664 * (n0 + n1 + n2 + n3 + n4);
+  return 72.37857097679466 * (n0 + n1 + n2 + n3 + n4);
 };
 
 FastSimplexNoise.prototype.spherical2D = function (c, x, y) {
