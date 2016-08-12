@@ -9,6 +9,7 @@ Convenience functions have been added as well, in order to avoid needing to scal
     npm install fast-simplex-noise
 
 ## Example
+
     const FastSimplexNoise = require('fast-simplex-noise')
 
     // Generate 2D noise in a 1024x768 grid, scaled to [0, 255]
@@ -26,6 +27,15 @@ Convenience functions have been added as well, in order to avoid needing to scal
         grid[x][y] = noiseGen.in2D(x, y)
       }
     }
+
+### Seeded Values
+
+You can pass a random number generator as an option (see constructor options below); specifically [seedrandom](https://www.npmjs.com/package/seedrandom) is recommended when seeded values are desired.
+
+    const seedrandom = require('seedrandom')
+
+    const rng = seedrandom('hello')
+    const noiseGen = new FastSimplexNoise({ random: rng })
 
 ## API
 
