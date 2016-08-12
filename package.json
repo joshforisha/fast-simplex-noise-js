@@ -2,7 +2,12 @@
   "name": "fast-simplex-noise",
   "version": "2.1.1",
   "description": "A JavaScript implementation of faster simplex noise",
-  "keywords": ["noise", "perlin", "random", "simplex"],
+  "keywords": [
+    "noise",
+    "perlin",
+    "random",
+    "simplex"
+  ],
   "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
   "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
@@ -10,5 +15,11 @@
   "main": "main.js",
   "engines": {
     "node": ">=4.2.6"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "devDependencies": {
+    "standard": "~7"
   }
 }
