@@ -8,6 +8,7 @@
     "random",
     "simplex"
   ],
+  "license": "Public Domain",
   "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
   "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
