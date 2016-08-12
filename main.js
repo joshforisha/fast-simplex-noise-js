@@ -59,6 +59,10 @@ function FastSimplexNoise (options) {
         return min + ((value + 1) / 2) * range
       }
     }
+  } else {
+    this.scale = function (value) {
+      return value
+    }
   }
 
   var i
@@ -119,7 +123,7 @@ FastSimplexNoise.prototype.in2D = function (x, y) {
   }
 
   var value = noise / maxAmplitude
-  return this.scale ? this.scale(value) : value
+  return this.scale(value)
 }
 
 FastSimplexNoise.prototype.in3D = function (x, y, z) {
@@ -137,7 +141,7 @@ FastSimplexNoise.prototype.in3D = function (x, y, z) {
   }
 
   var value = noise / maxAmplitude
-  return this.scale ? this.scale(value) : value
+  return this.scale(value)
 }
 
 FastSimplexNoise.prototype.in4D = function (x, y, z, w) {
@@ -155,7 +159,7 @@ FastSimplexNoise.prototype.in4D = function (x, y, z, w) {
   }
 
   var value = noise / maxAmplitude
-  return this.scale ? this.scale(value) : value
+  return this.scale(value)
 }
 
 FastSimplexNoise.prototype.raw2D = function (x, y) {
