@@ -1,4 +1,4 @@
-# fast-simplex-noise-js [![npm version](https://badge.fury.io/js/fast-simplex-noise.svg)](https://www.npmjs.com/package/fast-simplex-noise)
+# fast-simplex-noise-js&ensp;[![npm version](https://badge.fury.io/js/fast-simplex-noise.svg)](https://www.npmjs.com/package/fast-simplex-noise)
 
 A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf).
 
@@ -9,7 +9,7 @@ Convenience functions have been added as well, in order to avoid needing to scal
     npm install fast-simplex-noise
 
 ## Example
-    const FastSimplexNoise = require('fast-simplex-noise');
+    const FastSimplexNoise = require('fast-simplex-noise')
 
     // Generate 2D noise in a 1024x768 grid, scaled to [0, 255]
     const noiseGen = new FastSimplexNoise({
@@ -17,12 +17,13 @@ Convenience functions have been added as well, in order to avoid needing to scal
       max: 255,
       min: 0,
       octaves: 8
-    });
-    const grid = new Array(1024);
+    })
+
+    const grid = new Array(1024)
     for (let x = 0; x < 1024; x++) {
-      grid[x] = new Array(768);
+      grid[x] = new Array(768)
       for (let y = 0; y < 768; y++) {
-        grid[x][y] = noiseGen.in2D(x, y);
+        grid[x][y] = noiseGen.in2D(x, y)
       }
     }
 
@@ -31,7 +32,7 @@ Convenience functions have been added as well, in order to avoid needing to scal
 ### Constructor
 
 #### FastSimplexNoise([options])
-Options is an optional object that can contain:
+Options is an object that can contain:
 
 - **amplitude**: `float` - The base amplitude (default: 1.0)
 - **frequency**: `float` - The base frequency (default: 1.0)
