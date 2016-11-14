@@ -73,7 +73,7 @@ Specific `raw()` call for a 3D point at (`x`, `y`, `z`).
 
 #### `raw4D(x: number, y: number, z: number, w: number): number`
 
-Specific `raw()` call for a 4D point at (`x`, `y`' `z`, `w`).
+Specific `raw()` call for a 4D point at (`x`, `y`, `z`, `w`).
 
 #### `scaled(coords: number[]): number`
 
