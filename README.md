@@ -46,38 +46,58 @@ Options contains:
 
 ### Instance Methods
 
-##### `cylindrical(circumference: number, point: number[]): number`
+#### `cylindrical(circumference: number, coords: number[]): number`
 
-Get a scaled noise value between **options.min** and **options.max** for a 2D or 3D `point` on the surface of a cylinder with `circumference`.
+Get a scaled noise value (using **options**) for a 2D or 3D point at `coords` on the surface of a cylinder with `circumference`.
 
-##### `cylindrical2D(circumference: number, x: number, y: number): number`
+#### `cylindrical2D(circumference: number, x: number, y: number): number`
 
-##### `cylindrical3D(circumference: number, x: number, y: number, z: number): number`
+Specific `cylindrical()` call for a 2D point at (`x`, `y`).
 
-##### `raw(point: number[]): number`
+#### `cylindrical3D(circumference: number, x: number, y: number, z: number): number`
 
-Get a noise value [-1, 1] at a 2D, 3D, or 4D `point`.
+Specific `cylindrical()` call for a 3D point at (`x`, `y`, `z`).
 
-##### `raw2D(x: number, y: number): number`
+#### `raw(coords: number[]): number`
 
-##### `raw3D(x: number, y: number, z: number): number`
+Get a noise value [-1, 1] at a 2D, 3D, or 4D point at `coords`.
 
-##### `raw4D(x: number, y: number, z: number, w: number): number`
+#### `raw2D(x: number, y: number): number`
 
-##### `scaled(point: number[]): number`
+Specific `raw()` call for a 2D point at (`x`, `y`).
 
-Get a scaled noise value between **options.min** and **options.max** at a 2D or 3D `point`.
+#### `raw3D(x: number, y: number, z: number): number`
 
-##### `scaled2D(x: number, y: number): number`
+Specific `raw()` call for a 3D point at (`x`, `y`, `z`).
 
-##### `scaled3D(x: number, y: number, z: number): number`
+#### `raw4D(x: number, y: number, z: number, w: number): number`
 
-##### `scaled4D(x: number, y: number, z: number, w: number): number`
+Specific `raw()` call for a 4D point at (`x`, `y`' `z`, `w`).
 
-##### `spherical(circumference: number, point: number[]): number`
+#### `scaled(coords: number[]): number`
 
-Get a scaled noise value between **options.min** and **options.max** at a 2D or 3D `point` on the surface of a sphere with `circumference`.
+Get a scaled noise value (using **options**) at a 2D, 3D, or 4D point at `coords`.
 
-##### `spherical2D(circumference: number, x: number, y: number): number`
+#### `scaled2D(x: number, y: number): number`
 
-##### `spherical3D(circumference: number, x: number, y: number, z: number): number`
+Specific `scaled()` call for a 2D point at (`x`, `y`).
+
+#### `scaled3D(x: number, y: number, z: number): number`
+
+Specific `scaled()` call for a 3D point at (`x`, `y`, `z`).
+
+#### `scaled4D(x: number, y: number, z: number, w: number): number`
+
+Specific `scaled()` call for a 4D point at (`x`, `y`, `z`, `w`).
+
+#### `spherical(circumference: number, point: number[]): number`
+
+Get a scaled noise value (using **options**) at a 2D or 3D point at `coords` on the surface of a sphere with `circumference`.
+
+#### `spherical2D(circumference: number, x: number, y: number): number`
+
+Specific `spherical()` call for a 2D point at (`x`, `y`).
+
+#### `spherical3D(circumference: number, x: number, y: number, z: number): number`
+
+Specific `spherical()` call for a 3D point at (`x`, `y`, `z`).

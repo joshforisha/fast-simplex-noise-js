@@ -85,9 +85,12 @@ export = class FastSimplexNoise {
     }
   }
 
-  cylindrical (circumference: number, x: number, y: number, z?: number): number {
-    if (typeof z !== 'undefined') return this.cylindrical3D(circumference, x, y, z)
-    return this.cylindrical2D(circumference, x, y)
+  cylindrical (circumference: number, coords: number[]): number {
+    switch (coords.length) {
+      case 2: return this.cylindrical2D(coords[0], coords[1])
+      case 3: return this.cylindrical3D(coords[0], coords[1], coords[2])
+      default: return null
+    }
   }
 
   cylindrical2D (circumference: number, x: number, y: number): number {
@@ -116,10 +119,13 @@ export = class FastSimplexNoise {
     return g[0] * x + g[1] * y
   }
 
-  raw (x: number, y: number, z?: number, w?: number): number {
-    if (typeof w !== 'undefined') return this.raw4D(x, y, z, w)
-    if (typeof z !== 'undefined') return this.raw3D(x, y, z)
-    return this.raw2D(x, y)
+  raw (coords: number[]): number {
+    switch (coords.length) {
+      case 2: return this.raw2D(coords[0], coords[1])
+      case 3: return this.raw3D(coords[0], coords[1], coords[2])
+      case 4: return this.raw4D(coords[0], coords[1], coords[2], coords[3])
+      default: return null
+    }
   }
 
   raw2D (x: number, y: number): number {
@@ -340,10 +346,13 @@ export = class FastSimplexNoise {
     return 72.37855765153665 * (n0 + n1 + n2 + n3 + n4)
   }
 
-  scaled (x: number, y: number, z?: number, w?: number): number {
-    if (typeof w !== 'undefined') return this.scaled4D(x, y, z, w)
-    if (typeof z !== 'undefined') return this.scaled3D(x, y, z)
-    return this.scaled2D(x, y)
+  scaled (coords: number[]): number {
+    switch (coords.length) {
+      case 2: return this.scaled2D(coords[0], coords[1])
+      case 3: return this.scaled3D(coords[0], coords[1], coords[2])
+      case 4: return this.scaled4D(coords[0], coords[1], coords[2], coords[3])
+      default: return null
+    }
   }
 
   scaled2D (x: number, y: number): number {
