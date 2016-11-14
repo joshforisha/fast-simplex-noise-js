@@ -1,6 +1,6 @@
 # Fast Simplex Noise
 
-[![build](https://img.shields.io/travis/joshforisha/fast-simplex-noise-js.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/joshforisha/fast-simplex-noise)\
+[![build](https://img.shields.io/travis/joshforisha/fast-simplex-noise-js.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/joshforisha/fast-simplex-noise)
 [![npm](https://img.shields.io/npm/v/fast-simplex-noise.svg?maxAge=25920000?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
 
 A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf). Convenience functions have been added as well, in order to avoid needing to scale and handle the raw noise data directly.
