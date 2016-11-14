@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "7"
+notifications:
+  email:
+    on_failure: always
+    on_success: never
+    recipients:
+      - josh@forisha.com

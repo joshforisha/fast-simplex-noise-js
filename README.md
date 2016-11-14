@@ -1,8 +1,6 @@
-# fast-simplex-noise-js&ensp;[![npm version](https://badge.fury.io/js/fast-simplex-noise.svg)](https://www.npmjs.com/package/fast-simplex-noise)
+# Fast Simplex Noise&ensp;[![build](https://img.shields.io/travis/joshforisha/fast-simplex-noise-js.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/joshforisha/fast-simplex-noise)&ensp;[![npm](https://img.shields.io/npm/v/fast-simplex-noise.svg?maxAge=25920000?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
 
-A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf).
-
-Convenience functions have been added as well, in order to avoid needing to scale and handle the raw noise data directly.
+A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf). Convenience functions have been added as well, in order to avoid needing to scale and handle the raw noise data directly.
 
 ## Install
 
@@ -36,13 +34,13 @@ You can pass a random number generator as an option (see constructor options bel
 
 Options contains:
 
-- **amplitude**: `float` - The base amplitude (default: 1.0)
-- **frequency**: `float` - The base frequency (default: 1.0)
-- **max**: `float` - The maximum scaled value to return (effective default: 1.0)
-- **min**: `float` - The minimum scaled value to return (effective default: -1.0)
-- **octaves**: `integer` - The number of octaves to sum for noise generation (default: 1)
-- **persistence**: `float` - The persistence of amplitude per octave (default: 0.5)
-- **random**: `function` - A function that generates random values between 0 and 1 (default: Math.random)
+- `amplitude: number` – The base amplitude (default: `1.0`)
+- `frequency: number` – The base frequency (default: `1.0`)
+- `max: number` – The maximum scaled value to return (effective default: `1.0`)
+- `min: number` - The minimum scaled value to return (effective default: `-1.0`)
+- `octaves: number` – Integer; the number of octaves to sum for noise generation (default: `1`)
+- `persistence: number` – The persistence of amplitude per octave (default: `0.5`)
+- `random: () => number` – A function that generates random values between 0 and 1 (default: `Math.random`)
 
 ### Instance Methods
 

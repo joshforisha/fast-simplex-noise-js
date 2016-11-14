@@ -17,7 +17,7 @@ interface Options {
   min?: number
   octaves?: number
   persistence?: number
-  random?: (_?: any) => number
+  random?: () => number
 }
 
 export = class FastSimplexNoise {
@@ -27,7 +27,7 @@ export = class FastSimplexNoise {
   readonly perm: Uint8Array
   readonly permMod12: Uint8Array
   readonly persistence: number
-  readonly random: (_?: any) => number
+  readonly random: () => number
   readonly scale: (value: number) => number
 
   static G2 = (3.0 - Math.sqrt(3.0)) / 6.0
@@ -87,8 +87,8 @@ export = class FastSimplexNoise {
 
   cylindrical (circumference: number, coords: number[]): number {
     switch (coords.length) {
-      case 2: return this.cylindrical2D(coords[0], coords[1])
-      case 3: return this.cylindrical3D(coords[0], coords[1], coords[2])
+      case 2: return this.cylindrical2D(circumference, coords[0], coords[1])
+      case 3: return this.cylindrical3D(circumference, coords[0], coords[1], coords[2])
       default: return null
     }
   }

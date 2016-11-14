@@ -8,21 +8,21 @@
     "random",
     "simplex"
   ],
-  "license": "Unlicense",
   "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
   "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
+  "license": "Unlicense",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
-  "repository": "joshforisha/fast-simplex-noise-js",
   "main": "lib/index.js",
-  "engines": {
-    "node": ">=4.2.6"
-  },
+  "repository": "joshforisha/fast-simplex-noise-js",
   "scripts": {
     "compile": "tsc",
-    "test": "tsc && standardts && node test.js"
+    "test": "standardts"
   },
   "devDependencies": {
     "standardts": "0.1.4",
     "typescript": "2.0.9"
+  },
+  "engines": {
+    "node": ">=7.0.0"
   }
 }
