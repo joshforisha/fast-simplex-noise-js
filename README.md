@@ -1,4 +1,7 @@
-# Fast Simplex Noise&ensp;[![build](https://img.shields.io/travis/joshforisha/fast-simplex-noise-js.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/joshforisha/fast-simplex-noise)&ensp;[![npm](https://img.shields.io/npm/v/fast-simplex-noise.svg?maxAge=25920000?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
+# Fast Simplex Noise
+
+[![build](https://img.shields.io/travis/joshforisha/fast-simplex-noise-js.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/joshforisha/fast-simplex-noise)
+[![npm](https://img.shields.io/npm/v/fast-simplex-noise.svg?maxAge=25920000?style=flat-square)](https://www.npmjs.com/package/fast-simplex-noise)
 
 A JavaScript implementation of the improved, faster Simplex algorithm outlined in Stefan Gustavson's [Simplex noise demystified](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf). Convenience functions have been added as well, in order to avoid needing to scale and handle the raw noise data directly.
 
@@ -37,7 +40,7 @@ Options contains:
 - `amplitude: number` – The base amplitude (default: `1.0`)
 - `frequency: number` – The base frequency (default: `1.0`)
 - `max: number` – The maximum scaled value to return (effective default: `1.0`)
-- `min: number` - The minimum scaled value to return (effective default: `-1.0`)
+- `min: number` – The minimum scaled value to return (effective default: `-1.0`)
 - `octaves: number` – Integer; the number of octaves to sum for noise generation (default: `1`)
 - `persistence: number` – The persistence of amplitude per octave (default: `0.5`)
 - `random: () => number` – A function that generates random values between 0 and 1 (default: `Math.random`)
@@ -70,7 +73,7 @@ Specific `raw()` call for a 3D point at (`x`, `y`, `z`).
 
 #### `raw4D(x: number, y: number, z: number, w: number): number`
 
-Specific `raw()` call for a 4D point at (`x`, `y`' `z`, `w`).
+Specific `raw()` call for a 4D point at (`x`, `y`, `z`, `w`).
 
 #### `scaled(coords: number[]): number`
 
