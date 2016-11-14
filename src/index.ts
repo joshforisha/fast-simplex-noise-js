@@ -113,10 +113,10 @@ export = class FastSimplexNoise {
     return this.scaled4D(a, b, y, z)
   }
 
-  dot (g: number[], x: number, y: number, z?: number, w?: number): number {
-    if (typeof w !== 'undefined') return g[0] * x + g[1] * y + g[2] * z + g[3] * w
-    if (typeof z !== 'undefined') return g[0] * x + g[1] * y + g[2] * z
-    return g[0] * x + g[1] * y
+  dot (gs: number[], coords: number[]): number {
+    return gs
+      .slice(0, Math.min(gs.length, coords.length))
+      .reduce((total, g, i) => total + (g * coords[i]), 0)
   }
 
   raw (coords: number[]): number {
@@ -158,11 +158,11 @@ export = class FastSimplexNoise {
 
     // Calculate the contribution from the three corners
     const t0 = 0.5 - x0 * x0 - y0 * y0
-    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD3D[gi0], x0, y0)
+    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD3D[gi0], [x0, y0])
     const t1 = 0.5 - x1 * x1 - y1 * y1
-    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD3D[gi1], x1, y1)
+    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD3D[gi1], [x1, y1])
     const t2 = 0.5 - x2 * x2 - y2 * y2
-    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD3D[gi2], x2, y2)
+    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD3D[gi2], [x2, y2])
 
     // Add contributions from each corner to get the final noise value.
     // The result is scaled to return values in the interval [-1, 1]
@@ -231,13 +231,13 @@ export = class FastSimplexNoise {
 
     // Calculate the contribution from the four corners
     const t0 = 0.5 - x0 * x0 - y0 * y0 - z0 * z0
-    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD3D[gi0], x0, y0, z0)
+    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD3D[gi0], [x0, y0, z0])
     const t1 = 0.5 - x1 * x1 - y1 * y1 - z1 * z1
-    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD3D[gi1], x1, y1, z1)
+    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD3D[gi1], [x1, y1, z1])
     const t2 = 0.5 - x2 * x2 - y2 * y2 - z2 * z2
-    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD3D[gi2], x2, y2, z2)
+    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD3D[gi2], [x2, y2, z2])
     const t3 = 0.5 - x3 * x3 - y3 * y3 - z3 * z3
-    const n3 = t3 < 0 ? 0.0 : Math.pow(t3, 4) * this.dot(FastSimplexNoise.GRAD3D[gi3], x3, y3, z3)
+    const n3 = t3 < 0 ? 0.0 : Math.pow(t3, 4) * this.dot(FastSimplexNoise.GRAD3D[gi3], [x3, y3, z3])
 
     // Add contributions from each corner to get the final noise value.
     // The result is scaled to stay just inside [-1,1]
@@ -332,15 +332,15 @@ export = class FastSimplexNoise {
 
     // Calculate the contribution from the five corners
     const t0 = 0.5 - x0 * x0 - y0 * y0 - z0 * z0 - w0 * w0
-    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD4D[gi0], x0, y0, z0, w0)
+    const n0 = t0 < 0 ? 0.0 : Math.pow(t0, 4) * this.dot(FastSimplexNoise.GRAD4D[gi0], [x0, y0, z0, w0])
     const t1 = 0.5 - x1 * x1 - y1 * y1 - z1 * z1 - w1 * w1
-    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD4D[gi1], x1, y1, z1, w1)
+    const n1 = t1 < 0 ? 0.0 : Math.pow(t1, 4) * this.dot(FastSimplexNoise.GRAD4D[gi1], [x1, y1, z1, w1])
     const t2 = 0.5 - x2 * x2 - y2 * y2 - z2 * z2 - w2 * w2
-    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD4D[gi2], x2, y2, z2, w2)
+    const n2 = t2 < 0 ? 0.0 : Math.pow(t2, 4) * this.dot(FastSimplexNoise.GRAD4D[gi2], [x2, y2, z2, w2])
     const t3 = 0.5 - x3 * x3 - y3 * y3 - z3 * z3 - w3 * w3
-    const n3 = t3 < 0 ? 0.0 : Math.pow(t3, 4) * this.dot(FastSimplexNoise.GRAD4D[gi3], x3, y3, z3, w3)
+    const n3 = t3 < 0 ? 0.0 : Math.pow(t3, 4) * this.dot(FastSimplexNoise.GRAD4D[gi3], [x3, y3, z3, w3])
     const t4 = 0.5 - x4 * x4 - y4 * y4 - z4 * z4 - w4 * w4
-    const n4 = t4 < 0 ? 0.0 : Math.pow(t4, 4) * this.dot(FastSimplexNoise.GRAD4D[gi4], x4, y4, z4, w4)
+    const n4 = t4 < 0 ? 0.0 : Math.pow(t4, 4) * this.dot(FastSimplexNoise.GRAD4D[gi4], [x4, y4, z4, w4])
 
     // Sum up and scale the result to cover the range [-1,1]
     return 72.37855765153665 * (n0 + n1 + n2 + n3 + n4)
@@ -362,7 +362,7 @@ export = class FastSimplexNoise {
     let noise = 0
 
     for (let i = 0; i < this.octaves; i++) {
-      noise += this.raw2D(x, y) * amplitude
+      noise += this.raw2D(x * frequency, y * frequency) * amplitude
       maxAmplitude += amplitude
       amplitude *= this.persistence
       frequency *= 2
@@ -378,7 +378,7 @@ export = class FastSimplexNoise {
     let noise = 0
 
     for (let i = 0; i < this.octaves; i++) {
-      noise += this.raw3D(x, y, z) * amplitude
+      noise += this.raw3D(x * frequency, y * frequency, z * frequency) * amplitude
       maxAmplitude += amplitude
       amplitude *= this.persistence
       frequency *= 2
@@ -394,7 +394,7 @@ export = class FastSimplexNoise {
     let noise = 0
 
     for (let i = 0; i < this.octaves; i++) {
-      noise += this.raw4D(x, y, z, w) * amplitude
+      noise += this.raw4D(x * frequency, y * frequency, z * frequency, w * frequency) * amplitude
       maxAmplitude += amplitude
       amplitude *= this.persistence
       frequency *= 2
