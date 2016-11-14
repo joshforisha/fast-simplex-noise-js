@@ -1,26 +1,28 @@
 {
   "name": "fast-simplex-noise",
-  "version": "2.2.0",
-  "description": "A JavaScript implementation of faster simplex noise",
+  "version": "3.0.0-pre",
+  "description": "A TypeScript implementation of faster simplex noise",
   "keywords": [
     "noise",
     "perlin",
     "random",
     "simplex"
   ],
-  "license": "Public Domain",
+  "license": "Unlicense",
   "homepage": "https://github.com/joshforisha/fast-simplex-noise-js",
   "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
   "repository": "joshforisha/fast-simplex-noise-js",
-  "main": "main.js",
+  "main": "lib/index.js",
   "engines": {
     "node": ">=4.2.6"
   },
   "scripts": {
-    "test": "standard"
+    "compile": "tsc",
+    "test": "tsc && standardts && node test.js"
   },
   "devDependencies": {
-    "standard": "~7"
+    "standardts": "0.1.4",
+    "typescript": "2.0.9"
   }
 }

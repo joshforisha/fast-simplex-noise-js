@@ -10,22 +10,13 @@ Convenience functions have been added as well, in order to avoid needing to scal
 
 ## Example
 
-    const FastSimplexNoise = require('fast-simplex-noise')
-
     // Generate 2D noise in a 1024x768 grid, scaled to [0, 255]
-    const noiseGen = new FastSimplexNoise({
-      frequency: 0.01,
-      max: 255,
-      min: 0,
-      octaves: 8
-    })
 
-    const grid = new Array(1024)
-    for (let x = 0; x < 1024; x++) {
-      grid[x] = new Array(768)
-      for (let y = 0; y < 768; y++) {
-        grid[x][y] = noiseGen.in2D(x, y)
-      }
+    const FastSimplexNoise = require('fast-simplex-noise')
+    const noiseGen = new FastSimplexNoise({ frequency: 0.01, max: 255, min: 0, octaves: 8 })
+
+    for (let x = 0; x < 1024; x++) for (let y = 0; y < 768; y++) {
+      grid[x][y] = noiseGen.scaled([x, y])
     }
 
 ### Seeded Values
@@ -41,8 +32,9 @@ You can pass a random number generator as an option (see constructor options bel
 
 ### Constructor
 
-#### FastSimplexNoise([options])
-Options is an object that can contain:
+#### FastSimplexNoise(options?: Options = {})
+
+Options contains:
 
 - **amplitude**: `float` - The base amplitude (default: 1.0)
 - **frequency**: `float` - The base frequency (default: 1.0)
@@ -54,32 +46,38 @@ Options is an object that can contain:
 
 ### Instance Methods
 
-#### cylindrical2D(c, x, y)
-Get a noise value between **min** and **max** for a point (*x*,*y*) on the surface of a cylinder with circumference *c*.
+##### `cylindrical(circumference: number, point: number[]): number`
 
-#### cylindrical3D(c, x, y, z)
-Get a noise value between **min** and **max** for a point (*x*, *y*, *z*) on the surface of a cylinder with circumference *c*.
+Get a scaled noise value between **options.min** and **options.max** for a 2D or 3D `point` on the surface of a cylinder with `circumference`.
 
-#### in2D(x, y)
-Get a noise value between **min** and **max** at the 2D coordinate (*x*,*y*) in summed octaves, using amplitude, frequency, and persistence values.
+##### `cylindrical2D(circumference: number, x: number, y: number): number`
 
-#### in3D(x, y, z)
-Get a noise value between **min** and **max** at the 3D coordinate (*x*,*y*,*z*) in summed octaves, using amplitude, frequency, and persistence values.
+##### `cylindrical3D(circumference: number, x: number, y: number, z: number): number`
 
-#### in4D(x, y, z, w)
-Get a noise value between **min** and **max** at the 4D coordinate (*x*,*y*,*z*,*w*) in summed octaves, using amplitude, frequency, and persistence values.
+##### `raw(point: number[]): number`
 
-#### raw2D(x, y)
-Get a noise value [-1, 1] at the 2D coordinate (*x*,*y*).
+Get a noise value [-1, 1] at a 2D, 3D, or 4D `point`.
 
-#### raw3D(x, y, z)
-Get a noise value [-1, 1] at the 3D coordinate (*x*,*y*,*z*).
+##### `raw2D(x: number, y: number): number`
 
-#### raw4D(x, y, z, w)
-Get a noise value [-1, 1] at the 4D coordinate (*x*,*y*,*z*,*w*).
+##### `raw3D(x: number, y: number, z: number): number`
 
-#### spherical2D(c, x, y)
-Get a noise value between **min** and **max** for a point (*x*, *y*) on the surface of a sphere with circumference *c*.
+##### `raw4D(x: number, y: number, z: number, w: number): number`
 
-#### spherical3D(c, x, y, z)
-Get a noise value between **min** and **max** for a point (*x*, *y*, *z*) on the surface of a sphere with circumference *c*.
+##### `scaled(point: number[]): number`
+
+Get a scaled noise value between **options.min** and **options.max** at a 2D or 3D `point`.
+
+##### `scaled2D(x: number, y: number): number`
+
+##### `scaled3D(x: number, y: number, z: number): number`
+
+##### `scaled4D(x: number, y: number, z: number, w: number): number`
+
+##### `spherical(circumference: number, point: number[]): number`
+
+Get a scaled noise value between **options.min** and **options.max** at a 2D or 3D `point` on the surface of a sphere with `circumference`.
+
+##### `spherical2D(circumference: number, x: number, y: number): number`
+
+##### `spherical3D(circumference: number, x: number, y: number, z: number): number`
