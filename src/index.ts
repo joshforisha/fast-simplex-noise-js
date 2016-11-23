@@ -10,7 +10,7 @@
  * attribution is appreciated.
  */
 
-interface Options {
+export interface Options {
   amplitude?: number
   frequency?: number
   max?: number
@@ -20,7 +20,7 @@ interface Options {
   random?: () => number
 }
 
-export = class FastSimplexNoise {
+export default class FastSimplexNoise {
   readonly amplitude: number
   readonly frequency: number
   readonly octaves: number

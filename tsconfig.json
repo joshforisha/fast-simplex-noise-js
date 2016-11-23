@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./lib",
@@ -8,9 +9,6 @@
     "sourceMap": true,
     "target": "es5"
   },
-  "exclude": [
-    "node_modules"
-  ],
   "files": [
     "src/index.ts"
   ]
