@@ -1,6 +1,6 @@
 {
   "name": "fast-simplex-noise",
-  "version": "3.0.0-pre.5",
+  "version": "3.0.0-pre.6",
   "description": "A TypeScript implementation of faster simplex noise",
   "keywords": [
     "noise",
@@ -13,7 +13,7 @@
   "license": "Unlicense",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
   "main": "lib/index.js",
-  "types": "lib/index.d.js",
+  "types": "lib/index.d.ts",
   "repository": "joshforisha/fast-simplex-noise-js",
   "scripts": {
     "compile": "tsc",
