@@ -1,6 +1,6 @@
 {
   "name": "fast-simplex-noise",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A TypeScript implementation of faster simplex noise",
   "keywords": [
     "noise",
@@ -24,6 +24,6 @@
     "typescript": "2.0.10"
   },
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=6.9.1"
   }
 }
