@@ -1,6 +1,6 @@
 {
   "name": "fast-simplex-noise",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "A TypeScript implementation of faster simplex noise",
   "keywords": [
     "noise",
@@ -17,7 +17,7 @@
   "repository": "joshforisha/fast-simplex-noise-js",
   "scripts": {
     "compile": "tsc",
-    "test": "standardts"
+    "test": "standardts src/**/*.ts"
   },
   "devDependencies": {
     "standardts": "0.1.4",

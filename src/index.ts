@@ -52,15 +52,50 @@ export default class FastSimplexNoise {
   ]
 
   constructor (options: Options = {}) {
-    this.amplitude = options.amplitude || 1.0
-    this.frequency = options.frequency || 1.0
-    this.octaves = options.octaves || 1
-    this.persistence = options.persistence || 0.5
-    this.random = options.random || Math.random
+    if (options.hasOwnProperty('amplitude')) {
+      if (typeof options.amplitude !== 'number') throw new Error('options.amplitude must be a number')
+      this.amplitude = options.amplitude
+    } else this.amplitude = 1.0
 
-    const min = options.min || -1
-    const max = options.max || 1
+    if (options.hasOwnProperty('frequency')) {
+      if (typeof options.frequency !== 'number') throw new Error('options.frequency must be a number')
+      this.frequency = options.frequency
+    } else this.frequency = 1.0
+
+    if (options.hasOwnProperty('octaves')) {
+      if (typeof options.octaves !== 'number' ||
+        !isFinite(options.octaves) ||
+        Math.floor(options.octaves) !== options.octaves
+      ) {
+        throw new Error('options.octaves must be an integer')
+      }
+      this.octaves = options.octaves
+    } else this.octaves = 1
+
+    if (options.hasOwnProperty('persistence')) {
+      if (typeof options.persistence !== 'number') throw new Error('options.persistence must be a number')
+      this.persistence = options.persistence
+    } else this.persistence = 0.5
+
+    if (options.hasOwnProperty('random')) {
+      if (typeof options.random !== 'function') throw new Error('options.random must be a function')
+      this.random = options.random
+    } else this.random = Math.random
+
+    let min: number
+    if (options.hasOwnProperty('min')) {
+      if (typeof options.min !== 'number') throw new Error('options.min must be a number')
+      min = options.min
+    } else min = -1
+
+    let max: number
+    if (options.hasOwnProperty('max')) {
+      if (typeof options.max !== 'number') throw new Error('options.max must be a number')
+      max = options.max
+    } else max = 1
+
     if (min >= max) throw new Error(`options.min (${min}) must be less than options.max (${max})`)
+
     this.scale = min === -1 && max === 1
       ? value => value
       : value => min + ((value + 1) / 2) * (max - min)
