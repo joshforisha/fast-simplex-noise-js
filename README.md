@@ -11,23 +11,27 @@ A JavaScript implementation of the improved, faster Simplex algorithm outlined i
 
 ## Example
 
-    // Generate 2D noise in a 1024x768 grid, scaled to [0, 255]
+```js
+// Generate 2D noise in a 1024x768 grid, scaled to [0, 255]
 
-    const FastSimplexNoise = require('fast-simplex-noise')
-    const noiseGen = new FastSimplexNoise({ frequency: 0.01, max: 255, min: 0, octaves: 8 })
+const FastSimplexNoise = require('fast-simplex-noise').default
+const noiseGen = new FastSimplexNoise({ frequency: 0.01, max: 255, min: 0, octaves: 8 })
 
-    for (let x = 0; x < 1024; x++) for (let y = 0; y < 768; y++) {
-      grid[x][y] = noiseGen.scaled([x, y])
-    }
+for (let x = 0; x < 1024; x++) for (let y = 0; y < 768; y++) {
+  grid[x][y] = noiseGen.scaled([x, y])
+}
+```
 
 ### Seeded Values
 
 You can pass a random number generator as an option (see constructor options below); specifically [seedrandom](https://www.npmjs.com/package/seedrandom) is recommended when seeded values are desired.
 
-    const seedrandom = require('seedrandom')
+```js
+const seedrandom = require('seedrandom')
 
-    const rng = seedrandom('hello')
-    const noiseGen = new FastSimplexNoise({ random: rng })
+const rng = seedrandom('hello')
+const noiseGen = new FastSimplexNoise({ random: rng })
+```
 
 ## API
 
