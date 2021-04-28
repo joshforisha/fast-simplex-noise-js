@@ -1,6 +1,6 @@
 {
   "name": "fast-simplex-noise",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "description": "A TypeScript implementation of faster simplex noise",
   "keywords": [
     "noise",
@@ -12,18 +12,15 @@
   "bugs": "https://github.com/joshforisha/fast-simplex-noise-js/issues",
   "license": "Unlicense",
   "author": "Josh Forisha <josh@forisha.com> (http://joshforisha.com)",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/mod.js",
+  "types": "lib/mod.d.ts",
   "repository": "joshforisha/fast-simplex-noise-js",
   "scripts": {
-    "compile": "tsc",
-    "test": "standardts src/**/*.ts"
+    "compile": "tsc && denoify",
+    "test": "tsc --noEmit && deno test deno_lib"
   },
   "devDependencies": {
-    "standardts": "0.1.4",
-    "typescript": "2.0.10"
-  },
-  "engines": {
-    "node": ">=6.9.1"
+    "denoify": "^0.6.5",
+    "typescript": "^4.2.4"
   }
 }

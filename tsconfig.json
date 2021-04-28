@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "declaration": true,
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "./lib",
-    "preserveConstEnums": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "target": "es5"
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "target": "ES5"
   },
-  "files": [
-    "src/index.ts"
-  ]
+  "exclude": ["**/*_test.ts"],
+  "include": ["src/*.ts"]
 }
