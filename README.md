@@ -9,16 +9,16 @@ See [fractal-noise-js](https://github.com/joshforisha/fractal-noise-js) (Deno: [
 
 ## API
 
-Each *make* function takes a random function as its argument, defaulting to `Math.random`.
+Each *make* function takes a `random` function (`() => number)`) as its argument, defaulting to `Math.random`.
 
-### makeNoise2D(random = Math.random): (x: number, y: number) => number
+### `makeNoise2D (random = Math.random): (x: number, y: number) => number`
 
 Returns a two-dimensional noise generation function.
 
-### makeNoise3D(random = Math.random): (x: number, y: number, z: number) => number
+### `makeNoise3D (random = Math.random): (x: number, y: number, z: number) => number`
 
 Returns a three-dimensional noise generation function.
 
-### makeNoise4D(random = Math.random): (x: number, y: number, z: number, w: number) => number`
+### `makeNoise4D (random = Math.random): (x: number, y: number, z: number, w: number) => number`
 
 Returns a four-dimensional noise generation function.
